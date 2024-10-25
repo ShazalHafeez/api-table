@@ -50,40 +50,44 @@ const DataTable = () => {
 
   return (
     <div className="container mt-4">
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item) => (
-            <tr key={item.id}>
-              <td>{item.name}</td>
-              <td>{item.username}</td>
-              <td>{item.email}</td>
-              <td>
-                <button
-                  className="btn"
-                  onClick={() => handleDelete(item.id)}
-                  aria-label={`Delete ${item.name}`}
-                >
-                  <i style={{ color: "#C70039" }} className="fa fa-trash"></i>
-                </button>
-                <button
-                  className="btn btn-secondary"
-                  onClick={() => handleEdit(item.id)}
-                >
-                  Edit
-                </button>
-              </td>
+      {data.length === 0 ? (
+        <h1 className="text-center my-5 text-danger">No users available</h1>
+      ) : (
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data.map((item) => (
+              <tr key={item.id}>
+                <td>{item.name}</td>
+                <td>{item.username}</td>
+                <td>{item.email}</td>
+                <td>
+                  <button
+                    className="btn"
+                    onClick={() => handleDelete(item.id)}
+                    aria-label={`Delete ${item.name}`}
+                  >
+                    <i style={{ color: "#C70039" }} className="fa fa-trash"></i>
+                  </button>
+                  <button
+                    className="btn btn-secondary"
+                    onClick={() => handleEdit(item.id)}
+                  >
+                    Edit
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
 
       {/* Bootstrap Modal for editing user data */}
       <div
